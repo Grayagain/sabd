@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: lab3-mutual-tls
+
+server:
+  port: 8443
+  ssl:
+    enabled: true
+    client-auth: need
+    key-store: classpath:tls/server-keystore.p12
+    key-store-type: PKCS12
+    key-store-password: changeit
+    key-alias: lab3-server
+    trust-store: classpath:tls/server-truststore.p12
+    trust-store-type: PKCS12
+    trust-store-password: changeit
+
+lab3:
+  client:
+    base-url: https://localhost:8443/api/messages
+    key-store: classpath:tls/client-keystore.p12
+    key-store-password: changeit
+    trust-store: classpath:tls/client-truststore.p12
+    trust-store-password: changeit
+    connect-timeout: 5s
+    read-timeout: 10s
