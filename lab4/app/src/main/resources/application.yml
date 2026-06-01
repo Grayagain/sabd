@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: lab4-zuul-gateway
+
+server:
+  port: 8080
+
+zuul:
+  routes:
+    users:
+      path: /api/users/**
+      url: http://localhost:${server.port}/backend/users
+    orders:
+      path: /api/orders/**
+      url: http://localhost:${server.port}/backend/orders
+
+logging:
+  level:
+    lab4: INFO
